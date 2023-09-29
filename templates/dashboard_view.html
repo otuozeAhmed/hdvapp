@@ -1,0 +1,154 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+                     <!-- Customized Card -->
+				<!-- <div class="row"> -->
+
+                        	<!-- <div class="col-md-12">
+							<div class="card shadow-lg">
+								<div class="card-header shadow-lg">
+									<div class="d-flex">
+										<h4 class="card-title"> Equipment Availability Summary </h4>
+										
+									</div>
+								    <h5 class="card-titled text-muted">Last Updated: {{ time.updated_at }}</h5>
+								</div>
+								<div class="card-body shadow-lg">
+									
+									 {% comment %} table-compact  {% endcomment %}
+									<div class="table-responsive">
+										<table id="add-row" class="table-display table-striped table-hover" style="width: 100%">
+											<thead id="table-header">
+												<tr class="text-light shadow-lg">
+													<th class="h3">Mobile Cranes</th>
+													<th class="h3">Reg. Number</th>
+													<th class="h3">Design Capacity</th>
+                                                    <th class="h3">Availability</th>
+													<th class="h3">Fault Type</th>
+													<th class="h3">Remarks</th>
+                                                    
+													
+												</tr>
+											</thead>
+											
+											<tbody>
+												{% for data in qs %}
+												<tr>
+													<td class="text-info"><a data-toggle="tooltip"
+														title="View Crane Detail"
+														href="{{ data.get_absolute_url  }}">{{data.name}}</a></td>
+													<td class="text-info">{{data.reg_no}} </td>
+													<td class="text-info">{{data.design_capacity}} </td>
+													<td class="{% if data.availability == 'Yes' %}
+													 text-success {% else %} text-danger 
+													 {% endif %}">{{data.availability}} </td>
+													<td class="{% if data.fault_type == 'Corrective' %}
+													text-danger {% else %} text-info 
+													{% endif %}">{{data.fault_type}} </td>
+													<td class="{% if data.remark == 'Awaiting Spare' %}
+													text-danger {% elif data.remark == 'In progress' %} text-warning 
+													{% elif data.remark == 'Breakdown' %} text-danger
+													{% else %} text-success 
+													{% endif %}">{{data.remark}} </td>
+												</tr>
+												{% endfor %}
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div> -->
+			<div class="content">
+				<div class="page-inner">
+
+                    {% for crane in qs %}
+                    <div class="row row-card-no-pd mt--2 shadow-lg">
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>{{crane.name}}</b></h5>
+											
+										</div>
+										<h3 class="milk-color fw-bold">{{crane.design_capacity}}</h3>
+									</div>
+                                    <div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Availability</b></h5>
+										</div>
+										<h3 class="{% if crane.availability == 'Yes' %} progress-color {% else %} veri-color {% endif %} fw-bold">{{crane.availability}}</h3>
+									</div>
+									<div class="progress progress-sm">
+										<div class="progress-bar {% if crane.availability == 'Yes' %} bg-success {% else %} bg-danger {% endif %} w-100" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Reg No.</b></h5>
+                                            </p>
+										</div>
+										<h3 class="text-muted fw-bold" style="font-size: 14px;">{{crane.reg_no}}</h3>
+									</div>
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Purchase Date</b></h5>
+                                            </p>
+										</div>
+										<h3 class="text-muted fw-bold" style="font-size: 14px;">{{crane.purchase_date|date:"M d, Y"}}</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Fault Type</b></h5>
+											<p class="text-muted" data-toggle="tooltip" title="{{crane.fault_type}}">{{crane.fault_type|truncatechars:30}}
+                                            </p>
+										</div>
+										<i class="{% if crane.availability == 'Yes' %} fas fa-thumbs-up progress-color {% else %} fas fa-thumbs-down veri-color {% endif %}" style="font-size: 20px;"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6 col-md-3">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex justify-content-between">
+										<div>
+											<h5><b>Remarks</b></h5>
+											<p class="text-muted" data-toggle="tooltip" title="{{crane.remark}}">{{crane.remark|truncatechars:30}}
+                                            </p>
+										</div>
+										<i class="fas fa-tasks esti-color" style="font-size: 20px;"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="mt-4"></div>
+                    {% endfor %}
+
+				</div>
+			</div>
+
+
+{% endblock content %}

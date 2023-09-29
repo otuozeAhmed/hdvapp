@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+					<!-- TimeLine -->
+					<h4 class="page-title">Error 404 - Page Not Found</h4>
+					<div class="row">
+						<div class="col-md-12">
+							
+							<ul class="timeline">
+
+								
+
+								<li>	
+									<div class="timeline-panel">
+										<div class="timeline-heading">
+											<h4 class="timeline-title">Oh dear! Yeah entered a wrong address...</h4>
+										</div>
+										<div class="timeline-body">
+											<p>Kindly click the button below, I'll automatically redirect you to the homepage OR Click any of the modules on the side pane and you'll be redirected automatically.</p>
+											
+											<div class="btn-group ">
+												<button type="button" class="btn btn-primary btn-sm m-3">
+													<a href="{% url 'dashboard_view' %}"><span class="btn-label">
+														<i class="">Click Here</i>
+													</span></a>
+												</button>
+												
+											</div>
+										</div>
+									</div>
+								</li>
+								
+								
+							</ul>
+						</div>
+					</div>
+
+
+
+					
+{% endblock content %}

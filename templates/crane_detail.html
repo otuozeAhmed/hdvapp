@@ -1,0 +1,140 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+					
+
+                     <!-- Customized Card -->
+                     
+            <div class="content">
+                 <div class="page-inner">
+                    <div class="mt-2"></div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="card shadow-lg">
+								<div class="card-header shadow-lg">
+									<div class="card-title">{{crane.name}} - {{ crane.design_capacity }}</div>
+								</div>
+								<div class="card-body shadow-lg">
+									<img class="card-img-top card-detail" src="{{ crane.image.url }}" alt="Card image cap">
+								</div>
+							</div>
+						</div>
+
+                        <div class="col-md-6">
+							<div class="card shadow-lg">
+								<div class="card-header shadow-lg">
+									<div class="card-head-row">
+										<div class="card-title">Crane Status </div>
+										
+									</div>
+								</div>
+								<div class="card-body shadow-lg">
+									<div class="d-flex">
+										<div class="avatar">
+											<span class="avatar-title rounded-circle border border-white {% if crane.availability == 'Yes' %}
+                                            bg-success {% else %} bg-danger {% endif %} font-weight-bold">A</span>
+										</div>
+										<div class="flex-1 ml-3 pt-3">
+											<h6 class="text-uppercase fw-bold mb-1">Availability <span class="{% if crane.availability == 'Yes' %}
+                                                 text-success {% else %} text-danger {% endif %} pl-3">{{ crane.availability }}</span></h6>
+										</div>
+										
+									</div>
+									<div class="separator-dashed"></div>
+									<div class="d-flex">
+										<div class="avatar">
+											<span class="avatar-title rounded-circle border border-white {% if crane.fault_type == 'Corrective' %}
+                                            bg-danger {% elif crane.fault_type == 'Servicing' %} bg-warning
+                                            {% elif crane.fault_type == 'Unavailable' %} bg-danger
+                                            {% elif crane.fault_type == 'Not Specified' %} bg-info
+                                             {% else %} bg-success {% endif %} font-weight-bold">F</span>
+										</div>
+										<div class="flex-1 ml-3 pt-3">
+											<h6 class="text-uppercase fw-bold mb-1">Fault <span class="{% if crane.fault_type == 'Corrective' %}
+                                                text-danger {% elif crane.fault_type == 'Servicing' %} text-warning
+                                                {% elif crane.fault_type == 'Unavailable' %} text-danger
+                                                {% elif crane.fault_type == 'Not Specified' %} text-info
+                                                 {% else %} text-success {% endif %} pl-3">{{ crane.fault_type }}</span></h6>
+											
+										</div>
+										<div class="float-right pt-3">
+											<small class="text-muted">{{crane.updated_at}}</small>
+										</div>
+									</div>
+									<div class="separator-dashed"></div>
+									<div class="d-flex">
+										<div class="avatar">
+											<span class="avatar-title rounded-circle border border-white {% if data.remark == 'Awaiting Spare' %}
+                                            bg-danger {% elif data.remark == 'In progress' %} bg-warning 
+                                            {% elif data.remark == 'Breakdown' %} bg-danger
+                                            {% else %} bg-success 
+                                            {% endif %} font-weight-bold">R</span>
+										</div>
+										<div class="flex-1 ml-3 pt-3">
+											<h6 class="text-uppercase fw-bold mb-1">Remarks <span class="{% if data.remark == 'Awaiting Spare' %}
+                                                text-danger {% elif data.remark == 'In progress' %} text-warning 
+                                                {% elif data.remark == 'Breakdown' %} text-danger
+                                                {% else %} text-success 
+                                                {% endif %} pl-3">{{ crane.remark }}</span></h6>
+											
+										</div>
+										
+									</div>
+								</div>
+							</div>
+
+
+
+
+
+                            <div class="card shadow-lg">
+								<div class="card-header shadow-lg">
+									<div class="card-head-row">
+										<div class="card-title">Description</div>
+										
+									</div>
+								</div>
+								<div class="card-body shadow-lg">
+									<div class="d-flex">
+										<div class="avatar">
+											<span class="avatar-title rounded-circle border border-white bg-info">D</span>
+										</div>
+										<div class="flex-1 ml-3 pt-1">
+											
+											<span class="text-muted">{{ crane.about|truncatewords:54 }}
+                                            </span>
+										</div>
+										<div class="float-right pt-1">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+                           
+                                <div class="card card-stats card-round shadow-lg">
+                                    <div class="card-body ">
+                                        <div class="row">
+                                            <div class="col-5">
+                                                <div class="icon-big text-center">
+                                                    <i class="fas fa-shipping-fast text-light"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-7 col-stats">
+                                                <div class="numbers">
+                                                    <p class="card-category text-light">Capacity</p>
+                                                    <h4 class="card-title pl-0">{{ crane.design_capacity }}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+						</div>
+                    </div>
+
+
+                    </div>
+                </div>
+
+{% endblock content %}

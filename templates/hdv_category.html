@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+					
+					
+				 <!-- Customized Card -->
+					<div class="row">
+						
+						{% for crane in qs %}
+						<div class="col-4 col-sm-4 col-lg-4">
+							<div class="card card-annoucement card-round shadow-lg">
+								<div class="card-body text-center shadow-lg">
+									<div class="card-opening text-light">{{crane.name}}</div>
+									<div class="card-desc">
+										{{crane.description|truncatechars:80}}
+									</div>
+									<div class="card-detail">
+										<div class="btn btn-rounded btn-hover">View More</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+                    </div>     
+                   
+              
+{% endblock content %}

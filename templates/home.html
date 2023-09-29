@@ -1,0 +1,282 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+                     <!-- Customized Card -->
+				<!-- <div class="row"> -->
+
+                        	<!-- <div class="col-md-12">
+							<div class="card shadow-lg">
+								<div class="card-header shadow-lg">
+									<div class="d-flex">
+										<h4 class="card-title"> Equipment Availability Summary </h4>
+										
+									</div>
+								    <h5 class="card-titled text-muted">Last Updated: {{ time.updated_at }}</h5>
+								</div>
+								<div class="card-body shadow-lg">
+									
+									 {% comment %} table-compact  {% endcomment %}
+									<div class="table-responsive">
+										<table id="add-row" class="table-display table-striped table-hover" style="width: 100%">
+											<thead id="table-header">
+												<tr class="text-light shadow-lg">
+													<th class="h3">Mobile Cranes</th>
+													<th class="h3">Reg. Number</th>
+													<th class="h3">Design Capacity</th>
+                                                    <th class="h3">Availability</th>
+													<th class="h3">Fault Type</th>
+													<th class="h3">Remarks</th>
+                                                    
+													
+												</tr>
+											</thead>
+											
+											<tbody>
+												{% for data in qs %}
+												<tr>
+													<td class="text-info"><a data-toggle="tooltip"
+														title="View Crane Detail"
+														href="{{ data.get_absolute_url  }}">{{data.name}}</a></td>
+													<td class="text-info">{{data.reg_no}} </td>
+													<td class="text-info">{{data.design_capacity}} </td>
+													<td class="{% if data.availability == 'Yes' %}
+													 text-success {% else %} text-danger 
+													 {% endif %}">{{data.availability}} </td>
+													<td class="{% if data.fault_type == 'Corrective' %}
+													text-danger {% else %} text-info 
+													{% endif %}">{{data.fault_type}} </td>
+													<td class="{% if data.remark == 'Awaiting Spare' %}
+													text-danger {% elif data.remark == 'In progress' %} text-warning 
+													{% elif data.remark == 'Breakdown' %} text-danger
+													{% else %} text-success 
+													{% endif %}">{{data.remark}} </td>
+												</tr>
+												{% endfor %}
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div> -->
+			<div class="content">
+				<div class="page-inner">
+					<div class="row row-card-no-pd shadow-lg">
+						<div class="col-6 col-sm-4 col-lg-2">
+						  <div class="card card-stats card-round">
+							<div class="card-body">
+							  <div class="row">
+									<h4 class="card-title milk-color mt-2">Mobile Cranes</h4>
+							  </div>
+							</div>
+						  </div>
+						</div>
+						<div class="col-6 col-sm-4 col-lg-2">
+						  <div class="card card-stats card-round">
+							<div class="card-body">
+							  <div class="row">
+									<h4 class="card-titlex font-weight-bold milk-color mt-2">
+										Reg. Number
+									</h4>
+							  </div>
+							</div>
+						  </div>
+						</div>
+						<div class="col-6 col-sm-4 col-lg-2">
+						  <div class="card card-stats card-round">
+							<div class="card-body">
+							  <div class="row">
+									<h4 class="card-titlex font-weight-bold milk-color mt-2">
+										Design Capacity
+									</h4>
+							  </div>
+							</div>
+						  </div>
+						</div>
+						<div class="col-6 col-sm-4 col-lg-2">
+						  <div class="card card-stats card-round">
+							<div class="card-body">
+							  <div class="row">
+									<h4 class="card-titlex font-weight-bold milk-color mt-2">
+										Availability
+									</h4>
+							  </div>
+							</div>
+						  </div>
+						</div>
+
+						<div class="col-6 col-sm-4 col-lg-2">
+							<div class="card card-stats card-round">
+							  <div class="card-body">
+								<div class="row">
+									  <h4 class="card-titlex font-weight-bold milk-color mt-2">
+										Fault Type
+									  </h4>
+								</div>
+							  </div>
+							</div>
+						  </div>
+
+						  <div class="col-6 col-sm-4 col-lg-2">
+							<div class="card card-stats card-round">
+							  <div class="card-body">
+								<div class="row">
+									  <h4 class="card-titlex font-weight-bold milk-color mt-2 ml-4">
+										Remarks
+									  </h4>
+								</div>
+							  </div>
+							</div>
+						  </div>
+					  </div>
+
+					  {% for crane in qs %}
+					  <div class="row row-card-no-pd shadow-lg">
+						<div class="col-6 col-sm-4 col-lg-2">
+						  <div class="card card-stats card-round">
+							<div class="card-body">
+							  <div class="row">
+									<h4 class="card-text-format milk-color mt-2 ml-4"><a data-toggle="tooltip"
+										title="View Crane Detail"
+										href="{{ crane.get_absolute_url  }}">{{crane.name}}</a></h4>
+							  </div>
+							</div>
+						  </div>
+						 </div>
+						 <div class="col-6 col-sm-4 col-lg-2">
+						  <div class="card card-stats card-round">
+							<div class="card-body">
+							  <div class="row">
+									<h4 class="font-weight-bold text-muted mt-2 ml-4">
+										{{crane.reg_no}}
+									</h4>
+							  </div>
+							</div>
+						  </div>
+						 </div>
+						 <div class="col-6 col-sm-4 col-lg-2">
+						  <div class="card card-stats card-round">
+							<div class="card-body">
+							  <div class="row">
+									<h4 class="card-titlex font-weight-bold text-muted mt-2 ml-4">
+										{{crane.design_capacity}}
+									</h4>
+							  </div>
+							</div>
+						  </div>
+						 </div>
+						 <div class="col-6 col-sm-4 col-lg-2">
+						  <div class="card card-stats card-round">
+							<div class="card-body">
+							  <div class="row">
+									<h4 class="card-titlex font-weight-bold mt-2 ml-4 px-4 {% if crane.availability == 'Yes' %}
+									progress-color {% else %} veri-color 
+									{% endif %}">
+										{{crane.availability}}
+									</h4>
+							  </div>
+							</div>
+						  </div>
+						 </div>
+
+						  <div class="col-6 col-sm-4 col-lg-2">
+							<div class="card card-stats card-round">
+							  <div class="card-body">
+								<div class="row">
+									  <h4 class="card-titlex font-weight-bold mt-2 ml-4 {% if crane.fault_type == 'Corrective' %}
+									  veri-color {% elif crane.fault_type == 'Unavailable'%} veri-color {% else %} progress-color 
+									  {% endif %}">
+										{{crane.fault_type}}
+									  </h4>
+								</div>
+							  </div>
+							</div>
+						  </div>
+
+						  <div class="col-6 col-sm-4 col-lg-2">
+							<div class="card card-stats card-round">
+							  <div class="card-body">
+								<div class="row">
+									  <h4 class="card-titlex font-weight-bold mt-2 ml-4 {% if crane.remark == 'Awaiting Spare' %}
+									  veri-color {% elif crane.remark == 'In progress' %} text-warning 
+									  {% elif crane.remark == 'Breakdown' %} veri-color
+									  {% else %} progress-color 
+									  {% endif %}">
+										{{crane.remark}}
+									  </h4>
+								</div>
+							  </div>
+							</div>
+						  </div>
+					  </div>
+					  {% endfor %}
+				</div>
+			</div>
+
+
+{% endblock content %}
+
+
+
+
+
+                        
+                
+
+
+
+                        
+                
